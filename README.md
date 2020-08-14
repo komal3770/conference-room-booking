@@ -12,7 +12,6 @@ Conference room can be used only between 9-12 & 1-5.
 - GIT
 
 ## Running this Project
-As it has H2 database, so no need to setup database. Import project > Build project > Run.
 
 ### 1. Run using H2 Database
  - Edit src/resource/data.sql file, add meeting request in the request table
@@ -20,3 +19,5 @@ As it has H2 database, so no need to setup database. Import project > Build proj
 ### 2. Run using file(Default)
  - Update ConferenceRoomBookingApplication.java, set file path
  - Sample file : src/main/resources/request.txt
+
+### Import project > Build project > Run.
