@@ -5,10 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.springframework.core.annotation.Order;
-
 @Entity
-@Order(value = 1)
 public class MeetingRoom {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +33,11 @@ public class MeetingRoom {
 	}
 	public void setRoomName(String roomName) {
 		this.roomName = roomName;
+	}
+
+	@Override
+	public String toString() {
+		return "MeetingRoom [roomId=" + roomId + ", roomName=" + roomName + "]";
 	}
 	
 	
