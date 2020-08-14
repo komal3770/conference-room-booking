@@ -33,46 +33,51 @@ public class ConferenceRoomBookingService {
 	 * */
 	public void scheduleMeetings(List<MeetingRequest> meetingRequests) {
 		DateTimeFormatter df = DateTimeFormatter.ofPattern("hh:mma");
-		
-		//Conference Room Time in 24 hr format
-		int roomBookStartHr = 9;
-		int roomBookEndHr = 17;
-		int lunchStartHr = 12;
-		int lunchEndHr = 13;
-		
-		//Lunch Time
-		LocalTime lunchStart = LocalTime.of(lunchStartHr, 0, 0, 0);
-		LocalTime lunchEnd = LocalTime.of(lunchEndHr, 0, 0, 0);
-		
-		List<MeetingRoom> rooms = meetingRoomRepository.findAll();
-		
-		
-		Iterator<MeetingRequest> meetingRequestItr = meetingRequests.iterator();
-		
-		//Allocating Meeting Rooms for meeting request received
-		for (MeetingRoom room : rooms) {
-			LocalTime time = LocalTime.of(roomBookStartHr, 0, 0, 0);
-			System.out.println(room.getRoomName());
-			
-			while(meetingRequestItr.hasNext()) {
-				//If room booking hour is not lying between 9 to 5
-				if(time.getHour() < roomBookStartHr || time.getHour() >= roomBookEndHr) 
-					break;
-					
-				if(time.compareTo(lunchStart)>=0 && time.compareTo(lunchEnd)<0) {
-					System.out.println(df.format(time)+" Lunch");
-					time = lunchEnd;
-				}
-				else {
-					MeetingRequest meetingRequest = meetingRequestItr.next();
-					System.out.println(df.format(time)+"\t"+meetingRequest.getTitle()+" "+meetingRequest.getDuration()+"min");
-					time = time.plusMinutes(meetingRequest.getDuration());
-					meetingRequestItr.remove();
+		try {
+
+			// Conference Room Time in 24 hr format
+			int roomBookStartHr = 9;
+			int roomBookEndHr = 17;
+			int lunchStartHr = 12;
+			int lunchEndHr = 13;
+
+			// Lunch Time
+			LocalTime lunchStart = LocalTime.of(lunchStartHr, 0, 0, 0);
+			LocalTime lunchEnd = LocalTime.of(lunchEndHr, 0, 0, 0);
+
+			List<MeetingRoom> rooms = meetingRoomRepository.findAll();
+
+			Iterator<MeetingRequest> meetingRequestItr = meetingRequests.iterator();
+
+			// Allocating Meeting Rooms for meeting request received
+			for (MeetingRoom room : rooms) {
+				LocalTime time = LocalTime.of(roomBookStartHr, 0, 0, 0);
+				System.out.println(room.getRoomName());
+
+				while (meetingRequestItr.hasNext()) {
+					// If room booking hour is not lying between 9 to 5
+					if (time.getHour() < roomBookStartHr || time.getHour() >= roomBookEndHr)
+						break;
+
+					if (time.compareTo(lunchStart) >= 0 && time.compareTo(lunchEnd) < 0) {
+						System.out.println(df.format(time) + " Lunch");
+						time = lunchEnd;
+					} else {
+						MeetingRequest meetingRequest = meetingRequestItr.next();
+						System.out.println(df.format(time) + "\t" + meetingRequest.getTitle() + " "+ meetingRequest.getDuration() + "min");
+						time = time.plusMinutes(meetingRequest.getDuration());
+						meetingRequestItr.remove();
+					}
 				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * Reading From File
+	 * */
 	public List<MeetingRequest> getMeetingRequestFromFile(String fileName){
 		List<MeetingRequest> talkList = new ArrayList<>();
         try {
