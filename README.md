@@ -7,10 +7,14 @@ Conference room can be used only between 9-12 & 1-5.
 ## Project Pre-requisite 
 - Spring Boot
 - Spring Data JPA
-- Scheduler
 - H2 Database
 - JAVA 8
 - GIT
 
 ## Running this Project
 As it has H2 database, so no need to setup database. Import project > Build project > Run.
+
+1. Run using H2 Database
+ - Edit src/resource/data.sql file, add meeting request in the request table
+2. Run using file
+ - Update ConferenceRoomBookingApplication.java, set file path
