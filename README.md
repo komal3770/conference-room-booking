@@ -14,11 +14,11 @@ Conference room can be used only between 9-12 & 1-5.
 ### Import project > Build project > Run.
 ### 1. Run using H2 Database
  - ConferenceRoomBookingApplication.java, Uncomment Line : 27 & 28
- ### Modify input values for the program
+ **Modify input values for the program**
  - This project takes test input from meeting_request table in data.sql file
  - Edit the insert query to change the test input
 ### 2. Run using file(Default)
  - Update ConferenceRoomBookingApplication.java, set file path
- ### Modify input values for the program
+ **Modify input values for the program**
  - This project takes test input from text file
  - Sample file : src/main/resources/request.txt
