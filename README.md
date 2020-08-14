@@ -19,3 +19,4 @@ As it has H2 database, so no need to setup database. Import project > Build proj
  - ConferenceRoomBookingApplication.java, Uncomment Line : 27 & 28
 2. Run using file(Default)
  - Update ConferenceRoomBookingApplication.java, set file path
+ - Sample file : src/main/resources/request.txt
